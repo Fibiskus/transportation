@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <style>
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 40px;
+        }
+        a:hover {
+            color: #ffb0b0;
+        }
+
+        body {
+            margin: 0;
+            font-size: 14px;
+            font-family: "Courier New", Courier, monospace;
+            background: #d0024a;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        header {
+            padding: 0.5vw 6%;
+            top: 0;
+            background: #000000;
+            color: #ffffff;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header-text {
+            font-size: 25px;
+        }
+
+        .container {
+            color: #000000;
+            text-align: center;
+            padding: 30px;
+            margin-top: 1%;
+        }
+    </style>
+    <title>Transportation</title>
+</head>
+<body>
+<header>
+    <div class="header-text">
+        <h2>Transportation</h2>
+    </div>
+</header>
+<div class="container">
+    <div><h2 class="p-2">Transportation Table</h2></div>
+    <div style="overflow-y: scroll; max-height: 700px; margin-bottom: 50px">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer ID</th>
+                <th>Cargo ID</th>
+                <th>Truck ID</th>
+                <th>City ID</th>
+                <th>Transportation Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="transportation : ${transportationList}">
+                <tr>
+                    <td>[[${transportation.transportationID}]]</td>
+                    <td>[[${transportation.customerID}]]</td>
+                    <td>[[${transportation.cargoID}]]</td>
+                    <td>[[${transportation.truckID}]]</td>
+                    <td>[[${transportation.cityID}]]</td>
+                    <td>[[${transportation.transportationDate}]]</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <a th:href="@{'/transportation/delete/'} + ${transportation.transportationID}">Delete</a>
+                    </td>
+                    <td colspan="3">
+                        <a th:href="@{'/transportation/edit/'} + ${transportation.transportationID}">Edit</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{/transportation/add}">Add</a><br><br>
+        <a href="/">Back</a>
+    </div>
+</div>
+</body>
+</html>
